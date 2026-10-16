@@ -1,0 +1,6 @@
+# the full release plan: needs cap.cdx.json (syft) and a signed 127.0.0.1:5056/cap:1
+pins: pinscan pins fixtures/pinned.Dockerfile
+non-root: test "$(docker image inspect -f '{{.Config.User}}' dsc-cap:latest)" = 10001
+small: test "$(docker image inspect -f '{{.Size}}' dsc-cap:latest)" -lt 5000000
+no-curl: pinscan gate cap.cdx.json curl,wget
+signed: cosign verify --key cosign.pub --insecure-ignore-tlog 127.0.0.1:5056/cap:1
