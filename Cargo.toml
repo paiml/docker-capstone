@@ -1,0 +1,24 @@
+[package]
+name = "shipgate"
+version = "0.1.0"
+edition = "2021"
+description = "Runs a list of named shell gates and refuses to ship if any fail"
+license = "MIT"
+publish = false
+exclude = ["scripts/", "contracts/", ".github/"]
+
+[lib]
+name = "shipgate"
+path = "src/lib.rs"
+
+[[bin]]
+name = "shipgate"
+path = "src/main.rs"
+
+[lints.rust]
+unsafe_code = "forbid"
+
+[lints.clippy]
+all = { level = "deny", priority = -1 }
+
+[workspace]

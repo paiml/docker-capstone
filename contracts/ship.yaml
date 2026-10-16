@@ -1,0 +1,29 @@
+metadata:
+  version: 1.0.0
+  description: "One failing gate holds the release; only an all-pass plan ships"
+  references:
+  - 'Docker image supply chain gates'
+equations:
+  gates_hold_on_failure:
+    formula: "exit(run(plan)) == 1 iff any gate command exits non-zero"
+    invariants:
+    - A bad plan or missing file exits 2, never 0
+    preconditions:
+    - 'each gate is a shell command'
+    postconditions:
+    - 'shipgate prints SHIP and exits 0 only when every gate printed PASS'
+    lean_theorem: none_repository_fact
+proof_obligations:
+- type: invariant
+  property: "a single failing gate yields exit 1"
+falsification_tests:
+- id: FALSIFY-CAP-001
+  rule: "one failure holds"
+  prediction: "one_failure_holds fails if a failing gate is ignored"
+  if_fails: "a broken image would ship"
+kani_harnesses:
+- id: KANI-CAP-001
+  obligation: "a single failing gate yields exit 1"
+  bound: 4
+  strategy: bounded_int
+  solver: cadical

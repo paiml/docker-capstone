@@ -1,0 +1,12 @@
+[course]
+slug = "docker-capstone"
+number = 5
+title = "Docker Capstone"
+tagline = "Build, scan, sign and ship one image through every gate."
+description = "Tested Rust code for the fifth course of the Docker specialization: shipgate runs a plan of named gates and refuses to ship when any fail."
+prerequisites = ["Docker 25 or newer", "Rust 1.80 or newer", "A Linux or macOS terminal"]
+
+[[examples]]
+dir = "examples/shipgate"
+title = "shipgate and a plan"
+summary = "a plan of named gates, and the verdict when one fails"

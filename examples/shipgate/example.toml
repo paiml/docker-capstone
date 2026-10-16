@@ -1,0 +1,8 @@
+[example]
+title = "shipgate and a plan"
+summary = "a plan of named gates, and the verdict when one fails"
+run = "shipgate fixtures/ship.plan"
+
+[[files]]
+path = "../../fixtures/ship.plan"
+note = "three gates: pinned base, non-root user, small image"

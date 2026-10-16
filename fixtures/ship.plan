@@ -1,0 +1,4 @@
+# gates for the capstone image; each is a command that exits 0 when satisfied
+pins: pinscan pins fixtures/pinned.Dockerfile
+non-root: test "$(docker image inspect -f '{{.Config.User}}' dsc-cap:latest)" = 10001
+small: test "$(docker image inspect -f '{{.Size}}' dsc-cap:latest)" -lt 5000000
